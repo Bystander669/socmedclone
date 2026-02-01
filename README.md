@@ -1,8 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chirp – Twitter-like clone
 
-## Getting Started
+A minimal Twitter-style app built with **Next.js** (App Router) and **Supabase**. Users can sign in with GitHub, post messages, like and comment on posts, and edit or delete their own posts.
 
-First, run the development server:
+## Features
+
+- **GitHub login** via Supabase Auth
+- **Posts** – create, edit, delete (own only)
+- **Likes** – toggle like on any post
+- **Comments** – add, edit, delete (own only) with inline replies
+- **Feed** – chronological posts with author avatar and username
+
+## Setup
+
+1. **Supabase project**  
+   Create a project at [supabase.com](https://supabase.com). The database schema (posts, likes, comments, profiles, RLS) is applied via the Supabase MCP migration.
+
+2. **GitHub OAuth**  
+   In Supabase: **Authentication → Providers → GitHub** → enable and add your GitHub OAuth App Client ID and Secret.  
+   In your GitHub OAuth App, set the callback URL to:  
+   `https://<your-project-ref>.supabase.co/auth/v1/callback`
+
+3. **Environment variables**  
+   Copy `.env.example` to `.env.local` and set:
+
+   - `NEXT_PUBLIC_SUPABASE_URL` – from Supabase project Settings → API
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` – from the same page
+   - `NEXT_PUBLIC_SITE_URL` – your app URL (e.g. `http://localhost:3000` for dev)
+
+4. **Run the app**
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). Sign in with GitHub to post, like, and comment.
+
+## Getting Started (dev)
 
 ```bash
 npm run dev
